@@ -1,11 +1,11 @@
 Ext.application({
-    name: 'GS',
+    name: 'Sencha',
 
     requires: [
         'Ext.MessageBox'
     ],
 
-    views: ['Main'],
+    views: [],
 
     icon: {
         57: 'resources/icons/Icon.png',
@@ -18,13 +18,29 @@ Ext.application({
     tabletStartupScreen: 'resources/loading/Homescreen~ipad.jpg',
 
     launch: function() {
-        // Destroy the #appLoadingIndicator element
-        Ext.fly('appLoadingIndicator').destroy();
+        Ext.create("Ext.tab.Panel", {
+            fullscreen: true,
+            tabBarPosition: 'bottom',
 
-        // Initialize the main view
-        Ext.Viewport.add(Ext.create('GS.view.Main'));
+            items: [
+                {
+                    title: 'Home',
+                    iconCls: 'home',
+                    cls: 'home',
+                    scrollable: true,
+                    
+                    html: [
+                        '<img src="http://staging.sencha.com/img/sencha.png" />',
+                        '<h1>Welcome to Sencha Touch</h1>',
+                        "<p>You're creating the Getting Started app. This demonstrates how ",
+                        "to use tabs, lists and forms to create a simple app</p>",
+                        '<h2>Sencha Touch (2.0.0)</h2>'
+                    ].join("")
+                }
+            ]
+        });
     },
-
+		   
     onUpdated: function() {
         Ext.Msg.confirm(
             "Application Update",
